@@ -2,7 +2,7 @@
 name = "tor-v3-vanity"
 version = "0.1.0"
 authors = ["Aiden McClelland <me@drbonez.dev>"]
-edition = "2018"
+edition = "2021"
 description = "A TOR v3 vanity url generator designed to run on an nvidia GPU."
 license = "MIT"
 repository = "https://github.com/dr-bonez/tor-v3-vanity"
@@ -21,16 +21,22 @@ path = "src/main.rs"
 
 [dependencies]
 base32 = "0.4.0"
-chrono = "0.4.13"
-clap = "2.33.1"
-crossbeam-channel = "0.4.3"
-ed25519-dalek = "1.0.0-pre.4"
+chrono = "0.4.38"
+clap = "2.34.0"
+crossbeam-channel = "0.5.13"
+ed25519-dalek = "1"
 failure = "0.1.8"
-num_cpus = "1.13.0"
-rand = "0.7.3"
-rustacuda = "0.1.2"
-sha3 = "0.9.1"
+num_cpus = "1.16.0"
+rand = "0.8.5"
+rustacuda = "0.1.3"
+sha3 = "0.10.8"
 tor-v3-vanity-core = { version = "0.1.0", path = "./core" }
 
 [build-dependencies]
-ptx-builder = "0.5"
+cuda_builder = "*"
+anyhow = "1.0.89"
+
+[patch.crates-io]
+cuda_std = { git = 'https://github.com/dssgabriel/Rust-CUDA', branch = "port-to-libnvvm2" }
+cust = { git = 'https://github.com/dssgabriel/Rust-CUDA', branch = "port-to-libnvvm2" }
+cuda_builder = { git = 'https://github.com/dssgabriel/Rust-CUDA', branch = "port-to-libnvvm2" }
